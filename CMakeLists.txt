@@ -1,7 +1,11 @@
-cmake_minimum_required(VERSION 2.8.8)
+# cmake_minimum_required(VERSION 2.8.8)
+cmake_minimum_required(VERSION 3.5)
 
 # Project name
 project(vicon2gt)
+
+
+message(STATUS "blabla")
 
 # Find catkin (the ROS build system)
 find_package(catkin REQUIRED COMPONENTS roscpp rosbag geometry_msgs sensor_msgs nav_msgs)
@@ -9,8 +13,30 @@ find_package(catkin REQUIRED COMPONENTS roscpp rosbag geometry_msgs sensor_msgs 
 # Include libraries
 find_package(Eigen3 REQUIRED) # built gtsam with cmake -DGTSAM_USE_SYSTEM_EIGEN=ON ..
 find_package(Boost REQUIRED COMPONENTS system filesystem thread date_time serialization regex timer)
-find_package(GTSAM REQUIRED) # built gtsam with cmake -DGTSAM_USE_SYSTEM_EIGEN=ON ..
-set(GTSAM_LIBRARIES gtsam)
+
+# find_package(GTSAM REQUIRED) # built gtsam with cmake -DGTSAM_USE_SYSTEM_EIGEN=ON ..
+
+# restore CMAKE_PREFIX_PATH and other cached variables
+# so nothing other package finds this opencv
+# set(CMAKE_PREFIX_PATH ${TMP_PREFIX_PATH})
+
+# unset(GTSAM_CONFIG_PATH CACHE)
+# unset(GTSAM_DIR CACHE)
+
+
+# find_package(GTSAM REQUIRED) # built gtsam with cmake -DGTSAM_USE_SYSTEM_EIGEN=ON ..
+
+set(GTSAM_INCLUDE_DIR "/home/vasek/gtsam_42a5/include")
+set(GTSAM_LIBRARIES "/home/vasek/gtsam_42a5/lib/libgtsam.so")
+
+
+message("gtsam libraries: " ${GTSAM_LIBRARIES})
+message("gtsam include: " ${GTSAM_INCLUDE_DIR})
+
+# set(GTSAM_LIBRARIES gtsam)
+
+message("gtsam libraries: " ${GTSAM_LIBRARIES})
+message("gtsam include: " ${GTSAM_INCLUDE_DIR})
 
 # Describe catkin project
 catkin_package(

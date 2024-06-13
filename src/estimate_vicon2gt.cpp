@@ -267,6 +267,8 @@ int main(int argc, char **argv) {
   // Create our camera timestamps at the requested fix frequency
   int ct_cam = 0;
   std::vector<double> timestamp_cameras;
+  start_time = time_init.toSec();
+  end_time = time_finish.toSec();
   if (start_time != -1 && end_time != -1 && start_time < end_time) {
     double temp_time = start_time;
     while (temp_time < end_time) {
